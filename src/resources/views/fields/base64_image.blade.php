@@ -20,17 +20,17 @@
     </div>
     <div class="btn-group">
         <label class="btn btn-primary btn-file">
-            Upload <input type="file" accept="image/*" id="uploadImage" class="hide">
+            Choose file <input type="file" accept="image/*" id="uploadImage" class="hide">
             <input type="hidden" id="hiddenImage" name="{{ $field['name'] }}">
         </label>
         @if($field['crop'])
-        <button class="btn btn-default" id="rotateLeft" type="button" style="display: none;">Rotate Left</button>
-        <button class="btn btn-default" id="rotateRight" type="button" style="display: none;">Rotate Right</button>
-        <button class="btn btn-default" id="zoomIn" type="button" style="display: none;">Zoom In</button>
-        <button class="btn btn-default" id="zoomOut" type="button" style="display: none;">Zoom Out</button>
-        <button class="btn btn-warning" id="reset" type="button" style="display: none;">Reset</button>
+        <button class="btn btn-default" id="rotateLeft" type="button" style="display: none;"><i class="fa fa-rotate-left"></i></button>
+        <button class="btn btn-default" id="rotateRight" type="button" style="display: none;"><i class="fa fa-rotate-right"></i></button>
+        <button class="btn btn-default" id="zoomIn" type="button" style="display: none;"><i class="fa fa-search-plus"></i></button>
+        <button class="btn btn-default" id="zoomOut" type="button" style="display: none;"><i class="fa fa-search-minus"></i></button>
+        <button class="btn btn-warning" id="reset" type="button" style="display: none;"><i class="fa fa-times"></i></button>
         @endif
-        <button class="btn btn-danger" id="remove" type="button">Remove</button>
+        <button class="btn btn-danger" id="remove" type="button"><i class="fa fa-trash"></i></button>
     </div>
   </div>
 
