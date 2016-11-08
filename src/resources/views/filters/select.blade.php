@@ -1,8 +1,9 @@
 {{-- TODO: make this work --}}
 {{-- important variables in here: $filter --}}
 
-<div class="form-group">
-	<select name="filter_{{ $filter->name }}" class="form-control">
+<div class="form-group backpack-filter">
+	<label for="filter_{{ $filter->name }}">{{ $filter->label }}</label>
+	<select id="filter_{{ $filter->name }}" name="filter_{{ $filter->name }}" class="form-control">
 		<option value="">-</option>
 
 		@if (is_array($filter->values) && count($filter->values))
@@ -19,12 +20,14 @@
 	</select>
 </div>
 
+{{-- ########################################### --}}
+{{-- Extra CSS and JS for this particular filter --}}
 
 {{-- FILTERS EXTRA CSS  --}}
 {{-- push things in the after_styles section --}}
 
     {{-- @push('crud_list_styles')
-        <!-- no styles -->
+        <!-- no css-->
     @endpush --}}
 
 
@@ -51,19 +54,15 @@
 					var current_url = '{{ $crud->ajaxTable()?url($crud->route.'/search'):Request::url() }}';
 					var new_url = '';
 
-
 					new_url = updateQueryStringParameter(current_url, current_name, value);
-					if (value == '') {
-						new_url = new_url.replace(current_name+"=", "");
-					}
-
+					if (value == '') { new_url = new_url.replace(current_name+"=", ""); }
 
 					@if ($crud->ajaxTable())
 						// behaviour for ajax table
 						var ajax_table = $("#crudTable").DataTable();
-						console.log(new_url);
-						ajax_table.ajax.url(new_url);
-						ajax_table.ajax.reload();
+						ajax_table.ajax.url(new_url).load();
+						// also set all duplicate filters to the same value
+						$("select[name=filter_{{ $filter->name }}]").val(value);
 				    @else
 				    	// behaviour for normal table
 				    	window.location.href = new_url;
@@ -72,3 +71,5 @@
 			});
 		</script>
     @endpush
+{{-- End of Extra CSS and JS --}}
+{{-- ########################################## --}}
