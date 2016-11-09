@@ -1,4 +1,3 @@
-{{-- TODO: make this work --}}
 {{-- Dropdown Backpack filter --}}
 
 <li filter-name="{{ $filter->name }}"
