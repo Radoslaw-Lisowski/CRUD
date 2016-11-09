@@ -1,4 +1,4 @@
-{{-- Dropdown Simple filter --}}
+{{-- Simple Backpack CRUD filter --}}
 
 <li filter-name="{{ $filter->name }}"
 	filter-type="{{ $filter->type }}"
@@ -29,13 +29,11 @@
 			$("li[filter-name={{ $filter->name }}] a").click(function(e) {
 				e.preventDefault();
 
-				var value = $(this).attr('key'); // does not exist
 				var parameter = $(this).attr('parameter');
-
 
 				@if (!$crud->ajaxTable())
 					// behaviour for normal table
-					var current_url = '{{ Request::fullUrl() }}';
+					var current_url = "{{ Request::fullUrl() }}".replace("&amp;", "&");
 
 					if (URI(current_url).hasQuery(parameter)) {
 						var new_url = URI(current_url).removeQuery(parameter, true);
@@ -44,7 +42,7 @@
 					}
 
 					// refresh the page to the new_url
-			    	window.location.href = new_url;
+			    	window.location.href = new_url.toString();
 			    @else
 			    	// behaviour for ajax table
 					var ajax_table = $("#crudTable").DataTable();
@@ -57,7 +55,7 @@
 					}
 
 					// replace the datatables ajax url with new_url and reload it
-					ajax_table.ajax.url(new_url).load();
+					ajax_table.ajax.url(new_url.toString()).load();
 
 					// mark this filter as active in the navbar-filters
 					if (URI(new_url).hasQuery('{{ $filter->name }}', true)) {
