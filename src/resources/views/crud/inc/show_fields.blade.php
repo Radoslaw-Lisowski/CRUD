@@ -8,10 +8,3 @@
     @include($fieldsViewNamespace.'.'.$field['type'], ['field' => $field])
 @endforeach
 
-@push('crud_scripts_pre')
-@stack('crud_fields_scripts')
-@endpush
-
-@push('crud_styles_pre')
-@stack('crud_fields_styles')
-@endpush
